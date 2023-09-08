@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket                  = "dc11-dot-hpvlong-terraform-state"
-    key                     = "my-terraform-project"
+    key                     = "terraform-state"
     region                  = "ap-southeast-1"
     shared_credentials_file = "~/.aws/credentials"
   }
