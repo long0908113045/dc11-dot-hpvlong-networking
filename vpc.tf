@@ -1,5 +1,6 @@
 resource "aws_vpc" "devops_vpc" {
   cidr_block = "10.0.0.0/16"
+  assign_generated_ipv6_cidr_block = true
   enable_dns_support = true
   enable_dns_hostnames = true
   tags = {
@@ -64,7 +65,7 @@ resource "aws_route_table" "devops_public_route_table" {
 resource "aws_route_table" "devops_private_route_table" {
   vpc_id = aws_vpc.devops_vpc.id
   route {
-    cidr_block = "0.0.0.0/0"
+    ipv6_cidr_block = "::/0"
     egress_only_gateway_id = aws_egress_only_internet_gateway.devops_egress_only_internet_gateway.id
   }
   tags = {
