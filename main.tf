@@ -16,7 +16,7 @@ terraform {
 }
 
 locals {
-  config_file_name      = "${terraform.workspace}.tfvars"
+  config_file_name      = "${terraform.workspace}.yaml"
   full_config_file_path = "variables/${local.config_file_name}"
   vars                  = yamldecode(file(local.full_config_file_path))
 }
