@@ -4,7 +4,7 @@ resource "aws_vpc" "devops_vpc" {
   enable_dns_support = true
   enable_dns_hostnames = true
   tags = {
-    Name = "devops vpc"
+    Name = "devops_vpc"
   }
 }
 
@@ -18,7 +18,7 @@ resource "aws_subnet" "devops_public_subnets" {
   availability_zone = data.aws_availability_zones.available.names[count.index]
   map_public_ip_on_launch = true
   tags = {
-    Name = "devops public subnets"
+    Name = "devops_public_subnets"
   }
 }
 
@@ -38,7 +38,7 @@ resource "aws_subnet" "devops_private_subnets" {
 resource "aws_internet_gateway" "devops_internet_gateway" {
   vpc_id = aws_vpc.devops_vpc.id
   tags = {
-    Name = "devops internet gateway"
+    Name = "devops_internet_gateway"
   }
 }
 
@@ -46,7 +46,7 @@ resource "aws_internet_gateway" "devops_internet_gateway" {
 resource "aws_egress_only_internet_gateway" "devops_egress_only_internet_gateway" {
   vpc_id = aws_vpc.devops_vpc.id
   tags = {
-    Name = "devops egress only internet gateway"
+    Name = "devops_egress_only_internet_gateway"
   }
 }
 
@@ -58,7 +58,7 @@ resource "aws_route_table" "devops_public_route_table" {
     gateway_id = aws_internet_gateway.devops_internet_gateway.id
   }
   tags = {
-    Name = "devops public route table"
+    Name = "devops_public_route_table"
   }
 }
 
@@ -69,7 +69,7 @@ resource "aws_route_table" "devops_private_route_table" {
     egress_only_gateway_id = aws_egress_only_internet_gateway.devops_egress_only_internet_gateway.id
   }
   tags = {
-    Name = "devops private route table"
+    Name = "devops_private_route_table"
   }
 }
 
